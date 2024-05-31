@@ -22,7 +22,7 @@ export async function loader({}:LoaderFunctionArgs) {
 }
 
 export default function Index() {
-  const data = useLoaderData();
+  const data = useLoaderData<typeof loader>();
   
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12 ">
@@ -33,14 +33,14 @@ export default function Index() {
         <div className="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
           {data.results.map((movie: any) => (
             <div className="flex flex-col overflow-hidden rounded-lg border bg-white">
-              <Link prefetch="intent" className="group relative block h-48  overflow-hidden bg-gray-100 " to={`movie/${movie.id}/comments`}>
+              <Link prefetch="intent" className="group relative block h-48  overflow-hidden bg-gray-100 " to={`movie/${movie.id}`}>
                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="absolute inset-0 h-full w-full object-cover
                  object-center transition duration-200 group-hover:scale-110" />
               </Link>
 
               <div className="flex flex-1 flex-col p-4 sm:p-6">
                 <h2 className="mb-2 text-lg font-semibold  text-gray-800">
-                  <Link to={`movie/${movie.id}/comments`} prefetch="intent"  className="transition duration-100 hover:text-indigo-500 active:text-indigo-600">
+                  <Link to={`movie/${movie.id}`} prefetch="intent"  className="transition duration-100 hover:text-indigo-500 active:text-indigo-600">
                     {movie.title}
                   </Link>
                 </h2>
